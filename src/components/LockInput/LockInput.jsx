@@ -3,7 +3,7 @@ import { TextField } from '@mui/material';
 
 const ERROR_TEXT = 'Wrong code!';
 
-const LockInput = ({ passcode, initValue = '0' }, ref) => {
+const LockInput = ({ passcode, initValue = '' }, ref) => {
   const [passValue, changePassValue] = useState(initValue);
   const [error, setError] = useState('');
 
@@ -34,7 +34,6 @@ const LockInput = ({ passcode, initValue = '0' }, ref) => {
         value={passValue}
         onChange={(e) => handleOnChange(e.target.value)}
         variant="filled"
-        type="number"
         error={!!error}
         helperText={error}
       />

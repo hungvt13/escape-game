@@ -1,8 +1,12 @@
-import React, { memo } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { memo, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
 import { Grid } from '@mui/material';
 import Button from '../../components/Button';
 import useGotoPage from '../../hooks/useGotoPage';
+import useAudio from '../../hooks/useAudio';
+import { resetGame, changeRoom } from '../../state/gameSlice';
 
 const Container = styled(Grid)({
   width: '100%',
@@ -13,11 +17,18 @@ const Container = styled(Grid)({
   color: 'white',
 });
 
-const IntroScreen = () => {
-  // eslint-disable-next-line no-unused-vars
+const IntroScreen = ({ playAudioNext }) => {
+  const dispatch = useDispatch();
   const { gotoPage } = useGotoPage();
+  const { playDoorUnlockedSFX } = useAudio();
+
+  useEffect(() => {
+    dispatch(changeRoom('intro'));
+  }, []);
 
   const onClickStart = () => {
+    playDoorUnlockedSFX();
+    playAudioNext();
     gotoPage('/room-1');
   };
 
@@ -35,6 +46,7 @@ const IntroScreen = () => {
           Start
         </Button>
         <Button
+          onClick={() => dispatch(resetGame())}
           style={{
             bottom: 100,
           }}

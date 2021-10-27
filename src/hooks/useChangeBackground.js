@@ -5,15 +5,17 @@ const backgroundURLMap = {
   '/room-1': 'room-1',
   '/room-2': 'room-2',
   '/room-3': 'room-3',
+  '/outro': 'outro',
+  '/cipher': 'cipher',
 };
 
 const useChangeBackground = () => {
   const location = useLocation();
   const { pathname } = location;
 
-  const roomImg = backgroundURLMap[pathname];
+  const roomLocation = backgroundURLMap[pathname];
 
-  return { roomImg };
+  return { roomLocation };
 };
 
 export default useChangeBackground;

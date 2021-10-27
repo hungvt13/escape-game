@@ -1,10 +1,11 @@
 import React, { memo } from 'react';
 import { styled } from '@mui/material/styles';
+import { Tooltip } from '@mui/material';
 
 const scaleDown = 0.6;
 
 const keyFramesBreathing = {
-  '@-webkit-keyframes breathing': {
+  '@keyframes breathing': {
     '0%': {
       transform: `scale(${scaleDown})`,
     },
@@ -40,8 +41,18 @@ const StyledPinPoint = styled('div')(() => ({
   ...keyFramesBreathing,
 }));
 
-const PinPoint = (props) => (
-  <StyledPinPoint {...props} />
-);
+const PinPoint = ({ tooltip, ...restProps }) => {
+  if (tooltip) {
+    return (
+      <Tooltip title={tooltip}>
+        <StyledPinPoint {...restProps} />
+      </Tooltip>
+    );
+  }
+
+  return (
+    <StyledPinPoint {...restProps} />
+  );
+};
 
 export default memo(PinPoint);
