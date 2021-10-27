@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid, IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { red } from '@mui/material/colors';
 import Button from '../Button';
 
 const originalAlphabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -65,10 +66,10 @@ const CaesarDecrypter = () => {
       }}
     >
       <div style={{
-        position: 'fixed', right: 20, top: '50%', backgroundColor: '#e33232', minWidth: '10vw',
+        position: 'fixed', right: 20, top: '50%', minWidth: '10vw',
       }}
       >
-        <div style={{ padding: '20px 10px', textAlign: 'center' }}>
+        <div style={{ padding: '20px 10px', textAlign: 'center', backgroundColor: red[700] }}>
           SHIFTED:
           {' '}
           {currentShift}

@@ -25,7 +25,7 @@ import useAudio from '../../hooks/useAudio';
 import CaesarImg from '../../assets/images/julius_caesar.png';
 import CombinationLockImg from '../../assets/images/combination_lock.png';
 import LockedDoorImg from '../../assets/images/locked_door.png';
-import QRCodeImg from '../../assets/images/qr_code.jpg';
+import QRCodeImg from '../../assets/images/qr_code.png';
 import DecryptedMessImg from '../../assets/images/decrypted_mess.png';
 
 const Room3 = ({ playPrevAudio, playAudioNext, stopAudio }) => {
@@ -166,7 +166,7 @@ const Room3 = ({ playPrevAudio, playAudioNext, stopAudio }) => {
       >
         {
           room3CipherSafeUnlocked ? (
-            <DialogImage imgSrc={QRCodeImg} />
+            <DialogImage imgSrc={QRCodeImg} imgStyles={{ width: '50%', height: '50%' }} />
           ) : (
             <>
               <DialogImage imgSrc={CombinationLockImg} />

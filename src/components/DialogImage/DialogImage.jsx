@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DialogImage = ({ imgSrc }) => {
+const DialogImage = ({ imgSrc, imgStyles }) => {
   // eslint-disable-next-line no-unused-vars
   const a = 'temp';
 
@@ -12,6 +12,7 @@ const DialogImage = ({ imgSrc }) => {
         style={{
           height: '80%',
           width: '80%',
+          ...imgStyles,
         }}
       />
     </div>
