@@ -38,7 +38,7 @@ const IntroScreen = ({ playAudioNext }) => {
         <Button
           onClick={onClickStart}
           style={{
-            bottom: 100,
+            bottom: 90,
             marginRight: 10,
           }}
         >
@@ -47,7 +47,7 @@ const IntroScreen = ({ playAudioNext }) => {
         <Button
           onClick={() => dispatch(resetGame())}
           style={{
-            bottom: 100,
+            bottom: 90,
           }}
         >
           Reset
