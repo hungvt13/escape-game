@@ -10,6 +10,7 @@ import {
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 // components
+import { red } from '@mui/material/colors';
 import Background from './components/Background';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
@@ -28,10 +29,20 @@ const App = () => {
   const {
     playRoom1Bg, playRoom2Bg, playRoom3Bg, playMorseCode, stopRoom1Bg, stopRoom2Bg, stopRoom3Bg, stopMorseCode,
   } = usePlayBgAudio();
+
   const theme = React.useMemo(
     () => createTheme({
       palette: {
         mode: 'dark',
+        primary: {
+          main: red[700],
+        },
+      },
+      typography: {
+        fontFamily: [
+          'Gloria Hallelujah',
+          'cursive',
+        ].join(','),
       },
     }),
     [],

@@ -41,7 +41,6 @@ const IntroScreen = ({ playAudioNext }) => {
             bottom: 100,
             marginRight: 10,
           }}
-          variant="contained"
         >
           Start
         </Button>
@@ -50,7 +49,6 @@ const IntroScreen = ({ playAudioNext }) => {
           style={{
             bottom: 100,
           }}
-          variant="contained"
         >
           Reset
         </Button>
