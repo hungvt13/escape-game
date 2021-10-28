@@ -21,6 +21,7 @@ import Room1 from './pages/Room1';
 import Room2 from './pages/Room2';
 import Room3 from './pages/Room3';
 import CipherPage from './pages/CaesarCipher';
+import Loading from './components/Loading/Loading';
 
 // utils
 import usePlayBgAudio from './hooks/usePlayBgAudio';
@@ -41,6 +42,7 @@ const App = () => {
       typography: {
         fontFamily: [
           'Gloria Hallelujah',
+          'roboto',
           'cursive',
         ].join(','),
       },
@@ -50,6 +52,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Loading />
       <Router>
         <Background>
           <Switch>

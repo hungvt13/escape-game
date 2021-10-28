@@ -9,7 +9,7 @@ const Transmission = ({ text, endCallback }) => (
     backgroundColor: 'black',
     color: 'white',
     position: 'absolute',
-    zIndex: '99999',
+    zIndex: '99998',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
