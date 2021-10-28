@@ -93,7 +93,7 @@ const Room1 = ({ playAudioNext, stopAudio }) => {
           playPaperSFX();
           toggleNoteDialog(false);
         }}
-        dialogText="Yojee's stock (ASX:YOJ) reached all time high on January 5th, 2018"
+        dialogText="Yojee's stock (ASX:YOJ) reached all time high (AUD) on February 18th, 2011"
       >
         <DialogImage imgSrc={YojeeLogoImg} />
       </Dialog>
@@ -120,7 +120,7 @@ const Room1 = ({ playAudioNext, stopAudio }) => {
         onSave={handleValidateDoor}
       >
         <DialogImage imgSrc={CombinationLockImg} />
-        <LockInput ref={lockRef} passcode="0.32" />
+        <LockInput ref={lockRef} passcode="0.41" />
       </Dialog>
     </div>
   );
