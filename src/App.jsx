@@ -10,7 +10,7 @@ import {
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 // components
-import { red } from '@mui/material/colors';
+import { red, orange } from '@mui/material/colors';
 import Background from './components/Background';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
@@ -37,6 +37,9 @@ const App = () => {
         mode: 'dark',
         primary: {
           main: red[700],
+        },
+        secondary: {
+          main: orange[700],
         },
       },
       typography: {

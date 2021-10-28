@@ -7,13 +7,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import Button from '../Button';
 
 const Dialog = ({
-  open, onClose, children, dialogText, haveSubmit, onSave,
+  open, onClose, children, dialogText, haveSubmit, onSave, maxWidth = 'lg',
 }) => (
   <MuiDialog
     open={open}
     onClose={onClose}
     fullWidth
-    maxWidth="lg"
+    maxWidth={maxWidth}
   >
     <DialogContent>
       {children}

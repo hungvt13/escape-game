@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import useGotoPage from '../../hooks/useGotoPage';
 import useAudio from '../../hooks/useAudio';
 import { resetGame, changeRoom } from '../../state/gameSlice';
+import Disclaimer from '../../components/Disclaimer/Disclaimer';
 
 const Container = styled(Grid)({
   width: '100%',
@@ -34,6 +35,7 @@ const IntroScreen = ({ playAudioNext }) => {
 
   return (
     <Container>
+      <Disclaimer />
       <div>
         <Button
           onClick={onClickStart}
