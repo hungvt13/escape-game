@@ -40,7 +40,7 @@ const Disclaimer = () => {
         dialogText="Disclaimers"
       >
         <Div>
-          This game is created for purely for recreations and free to play
+          This game is created purely for recreations and free to play
         </Div>
         <Div>
           It does not reflect / intentionally / unintentionally

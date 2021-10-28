@@ -67,7 +67,7 @@ const Room1 = ({ playAudioNext, stopAudio }) => {
       {
         firstTransmission && (
           <Transmission
-            text="You feel heavy in your head, slowly waking up ..."
+            text="You slowly waking up, last thing you remember was drinking with someone at a Halloween's party ..."
             endCallback={() => {
               dispatch(visitRoom('room-1'));
               changeTransmission(false);

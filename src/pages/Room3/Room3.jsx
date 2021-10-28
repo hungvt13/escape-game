@@ -101,7 +101,7 @@ const Room3 = ({ playPrevAudio, playAudioNext, stopAudio }) => {
       {
         firstTransmission && (
           <Transmission
-            text="You reach the Main Hall..."
+            text="You opened the door, you found yourself in the Main Hall..."
             endCallback={() => {
               dispatch(visitRoom('room-3'));
               changeTransmission(false);
