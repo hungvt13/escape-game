@@ -145,7 +145,7 @@ const Room2 = ({
           ) : (
             <>
               <DialogImage imgSrc={CombinationLockImg} />
-              <LockInput ref={lockedSafeRef} passcode="9632" initValue="9632" />
+              <LockInput ref={lockedSafeRef} passcode="9632" />
             </>
           )
         }
@@ -204,7 +204,7 @@ const Room2 = ({
         onSave={handleValidateDoor}
       >
         <DialogImage imgSrc={LockedDoor2Img} />
-        <LockInput ref={lockedDoorRef} passcode="8835" initValue="8835" />
+        <LockInput ref={lockedDoorRef} passcode="8835" />
       </Dialog>
     </div>
   );
