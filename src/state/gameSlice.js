@@ -3,7 +3,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import cloneDeep from 'lodash/cloneDeep';
 
-const initialState = {
+export const initialState = {
   currentRoom: 'intro',
   unlockedRooms: [],
   visitedRooms: [],

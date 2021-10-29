@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { memo, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { Grid } from '@mui/material';
 import Button from '../../components/Button';
 import useGotoPage from '../../hooks/useGotoPage';
 import useAudio from '../../hooks/useAudio';
 import { resetGame, changeRoom } from '../../state/gameSlice';
 import Disclaimer from '../../components/Disclaimer/Disclaimer';
+import { isGameNotPlayed } from '../../state/selectors';
 
 const Container = styled(Grid)({
   width: '100%',
@@ -22,6 +23,7 @@ const IntroScreen = ({ playAudioNext }) => {
   const dispatch = useDispatch();
   const { gotoPage } = useGotoPage();
   const { playDoorUnlockedSFX } = useAudio();
+  const isNewGame = useSelector(isGameNotPlayed);
 
   useEffect(() => {
     dispatch(changeRoom('intro'));
@@ -40,20 +42,24 @@ const IntroScreen = ({ playAudioNext }) => {
         <Button
           onClick={onClickStart}
           style={{
-            bottom: 90,
+            bottom: 100,
             marginRight: 10,
           }}
         >
-          Start
+          {isNewGame ? 'Start' : 'Continue'}
         </Button>
-        <Button
-          onClick={() => dispatch(resetGame())}
-          style={{
-            bottom: 90,
-          }}
-        >
-          Reset
-        </Button>
+        {
+          !isNewGame && (
+          <Button
+            onClick={() => dispatch(resetGame())}
+            style={{
+              bottom: 100,
+            }}
+          >
+            Reset
+          </Button>
+          )
+        }
       </div>
     </Container>
   );

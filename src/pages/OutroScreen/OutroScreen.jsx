@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import useGotoPage from '../../hooks/useGotoPage';
+import { resetGame } from '../../state/gameSlice';
 
 import Button from '../../components/Button';
 
 const OutroScreen = () => {
   const { gotoPage } = useGotoPage();
+  const dispatch = useDispatch();
 
   return (
     <div style={{
@@ -26,7 +29,16 @@ const OutroScreen = () => {
 
       </div>
       <div style={{ marginTop: 20 }}>
-        <Button onClick={() => gotoPage('/')} variant="contained">Back to menu</Button>
+        <Button
+          onClick={() => {
+            dispatch(resetGame());
+            gotoPage('/');
+          }}
+          variant="contained"
+        >
+          Back to menu
+
+        </Button>
       </div>
     </div>
   );

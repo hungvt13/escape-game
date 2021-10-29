@@ -69,6 +69,11 @@ const CaesarDecrypter = () => {
         position: 'fixed', right: 20, top: '50%', minWidth: '10vw',
       }}
       >
+        <div style={{ padding: '20px 10px', textAlign: 'center' }}>
+          <Button color="secondary" disabled>
+            Caesar Cipher
+          </Button>
+        </div>
         <div style={{ padding: '20px 10px', textAlign: 'center', backgroundColor: red[700] }}>
           SHIFTED:
           {' '}
