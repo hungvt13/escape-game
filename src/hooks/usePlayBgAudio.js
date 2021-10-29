@@ -26,7 +26,7 @@ const usePlayBgAudio = () => {
   const [playRoom1BgOringal, { stop: stopRoom1BgOringal }] = useSound(room1BgSFX, { volume: 0.08, interrupt: true });
   const [playRoom2BgOringal, { stop: stopRoom2BgOringal }] = useSound(room2BgSFX, { volume: 0.08, interrupt: true });
   const [playRoom3BgOringal, { stop: stopRoom3BgOringal }] = useSound(room3BgSFX, { volume: 0.08, interrupt: true });
-  const [playMorseCodeOringal, { stop: stopMorseCodeOringal }] = useSound(morseCodeSFX, { volume: 0.005, interrupt: true, playbackRate: 0.5 });
+  const [playMorseCodeOringal, { stop: stopMorseCodeOringal }] = useSound(morseCodeSFX, { volume: 0.1, interrupt: true, playbackRate: 0.3 });
 
   const memorizedFunc = useCallback(
     (fn, intervalStorage, duration = null) => () => {

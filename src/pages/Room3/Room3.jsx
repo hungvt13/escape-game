@@ -26,7 +26,7 @@ import CaesarImg from '../../assets/images/julius_caesar.png';
 import CombinationLockImg from '../../assets/images/combination_lock.png';
 import LockedDoorImg from '../../assets/images/locked_door.png';
 import QRCodeImg from '../../assets/images/qr_code.png';
-import DecryptedMessImg from '../../assets/images/decrypted_mess.png';
+import DecryptedMessImg from '../../assets/images/last_code.png';
 
 const Room3 = ({ playPrevAudio, playAudioNext, stopAudio }) => {
   const dispatch = useDispatch();
@@ -135,7 +135,7 @@ const Room3 = ({ playPrevAudio, playAudioNext, stopAudio }) => {
         onClose={() => toggleCaesarDialog(false)}
         dialogText={(
           <div>
-            Gaius Julius Caesar (100BC - 44BC)
+            Gaius Julius Caesar (100BC t 44BC)
             <br />
             One of the greatest general in the world&apos;s history
           </div>
@@ -157,6 +157,7 @@ const Room3 = ({ playPrevAudio, playAudioNext, stopAudio }) => {
       />
       <Dialog
         open={lockSafeCipherDialog}
+        maxWidth="md"
         onClose={() => toggleLockSafeCipherDialog(false)}
         dialogText={(room3CipherSafeUnlocked) ? '13' : 'Locked safe'}
         haveSubmit={!room3CipherSafeUnlocked}
@@ -170,7 +171,7 @@ const Room3 = ({ playPrevAudio, playAudioNext, stopAudio }) => {
           ) : (
             <>
               <DialogImage imgSrc={CombinationLockImg} />
-              <LockInput ref={lockedCipherSafeRef} passcode="10044" />
+              <LockInput ref={lockedCipherSafeRef} passcode="144" />
             </>
           )
         }
@@ -191,9 +192,8 @@ const Room3 = ({ playPrevAudio, playAudioNext, stopAudio }) => {
       <Dialog
         open={decyptedDialog}
         onClose={() => toggleDecryptedDialog(false)}
-        dialogText="?!"
       >
-        <DialogImage imgSrc={DecryptedMessImg} />
+        <DialogImage imgSrc={DecryptedMessImg} imgStyles={{ width: '50%', height: '50%' }} />
       </Dialog>
       {/* Locked door pin point */}
       <PinPoint

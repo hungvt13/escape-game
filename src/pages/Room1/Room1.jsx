@@ -120,7 +120,7 @@ const Room1 = ({ playAudioNext, stopAudio }) => {
         onSave={handleValidateDoor}
       >
         <DialogImage imgSrc={CombinationLockImg} />
-        <LockInput ref={lockRef} passcode="0.41" />
+        <LockInput ref={lockRef} passcode="0.41" initValue="0.41" />
       </Dialog>
     </div>
   );

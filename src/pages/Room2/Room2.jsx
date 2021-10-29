@@ -22,7 +22,8 @@ import useGotoPage from '../../hooks/useGotoPage';
 import useAudio from '../../hooks/useAudio';
 
 // assets
-import CircoCoImg from '../../assets/images/circo_co.png';
+// import CircoCoImg from '../../assets/images/circo_co.png';
+import MoreCodeImg from '../../assets/images/morse_code.png';
 import CombinationLockImg from '../../assets/images/combination_lock.png';
 import LockedDoor2Img from '../../assets/images/lock_room_2.png';
 
@@ -133,17 +134,18 @@ const Room2 = ({
       <Dialog
         open={lockSafeDialog}
         onClose={() => toggleLockSafeDialog(false)}
-        dialogText={!isSafeUnlocked ? 'This box have a lock outside!' : 'You found a picture inside, looks like an office somewhere'}
+        dialogText={!isSafeUnlocked ? 'This box have a lock outside!' : 'Morse code - an old telecommunication method'}
         haveSubmit={!isSafeUnlocked}
         onSave={(isSafeUnlocked === false) && handleValidateSafe}
+        maxWidth="xs"
       >
         {
           isSafeUnlocked ? (
-            <DialogImage imgSrc={CircoCoImg} />
+            <DialogImage imgSrc={MoreCodeImg} imgStyles={{ height: '100%', width: '100%' }} />
           ) : (
             <>
               <DialogImage imgSrc={CombinationLockImg} />
-              <LockInput ref={lockedSafeRef} passcode="9632" />
+              <LockInput ref={lockedSafeRef} passcode="9632" initValue="9632" />
             </>
           )
         }
@@ -202,7 +204,7 @@ const Room2 = ({
         onSave={handleValidateDoor}
       >
         <DialogImage imgSrc={LockedDoor2Img} />
-        <LockInput ref={lockedDoorRef} passcode="8835" />
+        <LockInput ref={lockedDoorRef} passcode="8835" initValue="8835" />
       </Dialog>
     </div>
   );
