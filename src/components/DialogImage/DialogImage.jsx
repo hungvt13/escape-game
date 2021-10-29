@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DialogImage = ({ imgSrc, imgStyles }) => {
+const DialogImage = ({ imgSrc, imgStyles = {} }) => {
   // eslint-disable-next-line no-unused-vars
   const a = 'temp';
 

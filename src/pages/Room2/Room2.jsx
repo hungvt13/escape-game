@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
 import React, {
-  useRef, useState, useEffect, memo,
+  useRef, useEffect, memo,
 } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Typewriter from 'typewriter-effect';
 
 // components
-import PinPoint from '../../components/PinPoint/PinPoint';
-import Dialog from '../../components/Dialog';
-import DialogImage from '../../components/DialogImage/DialogImage';
-import LockInput from '../../components/LockInput';
 import Transmission from '../Transmisson/Transmission';
+import InterestPoint from '../../components/InterestPoint/InterestPoint';
 
 // state
 import {
@@ -23,24 +19,34 @@ import useAudio from '../../hooks/useAudio';
 
 // assets
 // import CircoCoImg from '../../assets/images/circo_co.png';
-import MoreCodeImg from '../../assets/images/morse_code.png';
+import MorseCodeImg from '../../assets/images/morse_code.png';
 import CombinationLockImg from '../../assets/images/combination_lock.png';
 import LockedDoor2Img from '../../assets/images/lock_room_2.png';
+
+const Clue1Content = () => (
+  <div style={{
+    width: '100%', height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black',
+  }}
+  >
+    <Typewriter
+      onInit={(typewriter) => {
+        typewriter.typeString('ON OFF OFF ON OFF ON ON OFF ON OFF OFF OFF OFF OFF')
+          .start();
+      }}
+    />
+  </div>
+);
 
 const Room2 = ({
   playPrevAudio, playAudioNext, stopAudio, supportAudio,
 }) => {
   const dispatch = useDispatch();
-  const { gotoPage, goBack } = useGotoPage();
+  const { gotoPage } = useGotoPage();
   const {
     playPaperSFX, playDoorUnlockedSFX, playDoorLockedSFX, playMetalSFX,
   } = useAudio();
   const { playMorseCode, stopMorseCode } = supportAudio;
 
-  const [firstTransmission, changeTransmission] = useState(true);
-  const [lockSafeDialog, toggleLockSafeDialog] = useState(false);
-  const [lockDoorDialog, toggleLockDoorDialog] = useState(false);
-  const [clue1Dialog, toggleClue1Dialog] = useState(false);
   const lockedSafeRef = useRef();
   const lockedDoorRef = useRef();
 
@@ -93,119 +99,69 @@ const Room2 = ({
     return isValid;
   };
 
-  useEffect(() => {
-    if (isRoomVisited) changeTransmission(false);
-  }, [isRoomVisited]);
-
   return (
     <div style={{ position: 'relative', height: '100%', width: '100%' }}>
       {
-        firstTransmission && (
+        !isRoomVisited && (
           <Transmission
             text="You found yourself in the basement of the house..."
             endCallback={() => {
               dispatch(visitRoom('room-2'));
-              changeTransmission(false);
             }}
           />
         )
       }
       {/* back to room 1 pin point */}
-      <PinPoint
+      <InterestPoint
         tooltip="To living room"
-        onClick={() => handleBacktoRoom1()}
-        style={{
-          left: '35%',
-          top: '50%',
-        }}
+        handlePinPointClick={() => handleBacktoRoom1()}
+        positionBottom="48%"
+        positionRight="64%"
+        haveDialog={false}
       />
       {/* locked safe pin point */}
-      <PinPoint
-        tooltip={isSafeUnlocked ? 'Unlocked box' : 'Locked box'}
-        onClick={() => {
+      <InterestPoint
+        tooltip={isSafeUnlocked ? 'Unlocked box' : 'Locked box2'}
+        handlePinPointClick={() => {
           playMetalSFX();
-          toggleLockSafeDialog(true);
         }}
-        style={{
-          right: '40%',
-          bottom: '40%',
-        }}
-      />
-      <Dialog
-        open={lockSafeDialog}
-        onClose={() => toggleLockSafeDialog(false)}
-        dialogText={!isSafeUnlocked ? 'This box have a lock outside!' : 'Morse code - an old telecommunication method'}
+        positionBottom="40%"
+        positionRight="40%"
+        dialogTxt={!isSafeUnlocked ? 'This box have a lock outside!' : 'Morse code - an old telecommunication method'}
+        dialogImg={(isSafeUnlocked) ? MorseCodeImg : CombinationLockImg}
+        dialogImgStyles={{ height: '50%', width: '50%' }}
+        dialogValidate={() => (isSafeUnlocked === false) && handleValidateSafe()}
         haveSubmit={!isSafeUnlocked}
-        onSave={(isSafeUnlocked === false) && handleValidateSafe}
-        maxWidth="xs"
-      >
-        {
-          isSafeUnlocked ? (
-            <DialogImage imgSrc={MoreCodeImg} imgStyles={{ height: '100%', width: '100%' }} />
-          ) : (
-            <>
-              <DialogImage imgSrc={CombinationLockImg} />
-              <LockInput ref={lockedSafeRef} passcode="9632" />
-            </>
-          )
-        }
-      </Dialog>
-      {/* clue 1 pin point */}
-      <PinPoint
-        tooltip="Wooden Box"
-        onClick={() => {
-          playPaperSFX();
-          toggleClue1Dialog(true);
-        }}
-        style={{
-          right: '5%',
-          bottom: '15%',
-        }}
+        lockRef={lockedSafeRef}
+        lockPass={!isSafeUnlocked && '9632'}
       />
-      <Dialog
-        open={clue1Dialog}
-        onClose={() => toggleClue1Dialog(false)}
-      >
-        <div style={{
-          width: '100%', height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black',
-        }}
-        >
-          <Typewriter
-            onInit={(typewriter) => {
-              typewriter.typeString('ON OFF OFF ON OFF ON ON OFF ON OFF OFF OFF OFF OFF')
-                .callFunction(() => {
-                  console.log('String typed out!');
-                })
-                .start();
-            }}
-          />
-        </div>
-      </Dialog>
+      {/* clue 1 pin point */}
+      <InterestPoint
+        tooltip="Wooden Box"
+        handlePinPointClick={() => playPaperSFX()}
+        positionBottom="15%"
+        positionRight="5%"
+        dialogCustomContent={() => <Clue1Content />}
+      />
       {/* locked door to next room pin point */}
-      <PinPoint
+      <InterestPoint
         tooltip={isRoomUnlocked ? 'To Main Hall' : 'Locked door'}
-        onClick={() => {
+        handlePinPointClick={() => {
           if (isRoomUnlocked) {
             gotoPage('/room-3');
             stopMorseCode();
             stopAudio();
-          } else toggleLockDoorDialog(true);
+          }
         }}
-        style={{
-          right: '10%',
-          bottom: '50%',
-        }}
-      />
-      <Dialog
-        open={lockDoorDialog}
-        onClose={() => toggleLockDoorDialog(false)}
-        dialogText="Seems like this door lead to another room"
+        positionBottom="50%"
+        positionRight="10%"
+        dialogTxt="Seems like this door lead to another room"
+        dialogImg={LockedDoor2Img}
+        dialogValidate={() => handleValidateDoor()}
         haveSubmit
-        onSave={handleValidateDoor}
-      >
-        <DialogImage imgSrc={LockedDoor2Img} />
-        <LockInput ref={lockedDoorRef} passcode="8835" />
-      </Dialog>
+        lockRef={lockedDoorRef}
+        lockPass="8835"
+      />
     </div>
   );
 };
