@@ -159,7 +159,7 @@ const Room3 = ({ playPrevAudio, playAudioNext, stopAudio }) => {
         open={lockSafeCipherDialog}
         maxWidth="md"
         onClose={() => toggleLockSafeCipherDialog(false)}
-        dialogText={(room3CipherSafeUnlocked) ? '13' : 'Locked safe'}
+        dialogText={(room3CipherSafeUnlocked) ? '7' : 'Locked safe'}
         haveSubmit={!room3CipherSafeUnlocked}
         onSave={() => {
           if (!room3CipherSafeUnlocked) handleValidateCipherSafe();
