@@ -8,7 +8,9 @@ To build for deploy
 After finish you can find the build bundle in `build` folder
 
 To start it locally:
- `npm install serve -g` <--- dp this one time only, after that no need to install again
+
+ `npm install serve -g` <--- do this one time only, after that no need to install again
+ 
 then `serve -s build`
 
 ## Available Scripts
